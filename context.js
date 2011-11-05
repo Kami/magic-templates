@@ -1,4 +1,4 @@
-var sys = require('sys')
+var util = require('util')
   , isArray = Array.isArray
   , DEFAULT_STACK = (global.SETTINGS && SETTINGS.CONTEXT_DEFAULT_STACK) || [];
 

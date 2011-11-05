@@ -1,5 +1,5 @@
 var T    = require('../index')
-  , sys  = require('sys')
+  , util  = require('util')
   , path = require('path');
 
 T.setTemplatesDir(__dirname);
@@ -12,10 +12,10 @@ var context = {
   str: 'foobar'
 }
 
-sys.puts('Forloop test: \n');
+util.puts('Forloop test: \n');
 
 template.load(function(err, template) {
   template.render(context, function (err, rendered_template) {
-    sys.puts(rendered_template.join(''));
+    util.puts(rendered_template.join(''));
   });
 });

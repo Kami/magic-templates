@@ -2,7 +2,7 @@
  Test for http://github.com/skid/strobe-templates/issues#issue/1
  */
 
-var sys = require('sys');
+var util = require('util');
 var path = require('path');
 var assert = require('assert');
 
@@ -15,13 +15,13 @@ var template = new T.Template(path.join('test.html'));
 function do_render() {
   template.load(function (err, template) {
     if (err) {
-      sys.log(err);
+      util.log(err);
       return;
     }
 
     template.render({}, function (err, rendered_template) {
       if (err) {
-        sys.log(err);
+        util.log(err);
         return;
       }
 
@@ -45,7 +45,7 @@ function after_render(rendered_template) {
     'Rendered template length after call #' + i +
     ' is not the same as the after the first call');
 
-    sys.log(rendered_template);
+    util.log(rendered_template);
     do_render();
     i++;
   }

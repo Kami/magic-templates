@@ -1,5 +1,5 @@
 var fs                = require('fs')
-  , sys               = require('sys')
+  , util               = require('util')
   , path              = require('path')
   , events            = require('events')
   , isArray           = Array.isArray

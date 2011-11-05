@@ -1,4 +1,4 @@
-var sys         = require('sys')
+var util         = require('util')
   , E           = require('../exceptions');
 
 exports.block = BLOCK;

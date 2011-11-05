@@ -4,14 +4,14 @@
  */
 
 var T    = require('../index')
-  , sys  = require('sys')
+  , util  = require('util')
   , path = require('path');
   
 T.setTemplatesDir( __dirname );
 T.setDebug( true );
 
-sys.puts( "\nRunning some benchmarks:" );
-sys.puts( "*******************************************************" );
+util.puts( "\nRunning some benchmarks:" );
+util.puts( "*******************************************************" );
 var html =[
   "<h1>This is the homepage</h1><p>{{ greeting }}</p>",
   "<p></p>",
@@ -26,10 +26,10 @@ var html =[
   "{% endif %}",
   "{% endfor %}"].join("\n");
 
-sys.puts("\n", "Original html template: \n\n" + html, "");
-sys.puts("Context: { greeting:'Hello World', four:4, five:5, l: [array with 100 elements] }", "");
+util.puts("\n", "Original html template: \n\n" + html, "");
+util.puts("Context: { greeting:'Hello World', four:4, five:5, l: [array with 100 elements] }", "");
 
-sys.puts( "*******************************************************" );
+util.puts( "*******************************************************" );
 
 var l = [];
 for( var i=0; i<100; i++ ) l.push(".");
@@ -39,7 +39,7 @@ var t2 = new T.Template();
 for( var i=0; i<10000; ++i )
   t2.parse(html);
 
-sys.puts( "10K iterations on parsing the original string: " + (new Date() - d1) + " ms");
+util.puts( "10K iterations on parsing the original string: " + (new Date() - d1) + " ms");
 
 var d1 = new Date();
 var t2 = new T.Template();
@@ -47,11 +47,11 @@ t2.parse(html);
 for( var i=0; i<1000; ++i )
   t2.render({ greeting: "Hello World", four: 4, five: 5, l: l});
 
-sys.puts( "1000 iterations on rendering the parsed template: " + (new Date() - d1) + " ms");
+util.puts( "1000 iterations on rendering the parsed template: " + (new Date() - d1) + " ms");
 
-sys.puts( "\nParsing and loading from file:" );
-sys.puts( "*******************************************************" );
-sys.puts( "" );
+util.puts( "\nParsing and loading from file:" );
+util.puts( "*******************************************************" );
+util.puts( "" );
 
 var context = {
     file: "included.html"
@@ -67,12 +67,12 @@ T.Context.addToDefault({  greeting: "This text is a variable defined in the view
 var template = new T.Template( path.join( "page.html" ) );
 template.load( function( err, template ) {
   if( err ) 
-    sys.puts( err );
+    util.puts( err );
   else
     template.render( context, function( err, output ) {
       if( err ) 
-        sys.puts( err );
+        util.puts( err );
       else 
-        sys.puts( output.join("").replace(/\n+/g,"\n") );
+        util.puts( output.join("").replace(/\n+/g,"\n") );
     });
 });
