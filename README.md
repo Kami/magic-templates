@@ -25,7 +25,7 @@ Requirements
 Simple usage example
 =========================
 
-    var sys = require('sys')
+    var util = require('util')
       , templates = require('template');
 
     templates.setTemplatesDir('/path/to/templates/dir');
@@ -35,13 +35,13 @@ Simple usage example
     var template = new templates.Template('path/to/template.html');
     template.load( function( err, template ) {
       if( err ) // load/parse errors (invalid filename, bad template syntax)
-        sys.puts( err );
+        util.puts( err );
       else
         template.render( context, function( err, output ) {
           if( err ) // render errors (invalid filename in context variables, bad context variables)
-            sys.puts( err );
+            util.puts( err );
           else 
-            sys.puts( output.join("") );
+            util.puts( output.join("") );
         });
     });
 
